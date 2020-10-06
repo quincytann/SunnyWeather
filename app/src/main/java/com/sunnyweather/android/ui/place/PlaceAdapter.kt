@@ -32,9 +32,9 @@ class PlaceAdapter(private val frament: Fragment, private val placeList: List<Pl
                 putExtra("location_lat",place.location.lat)
                 putExtra("place_name",place.name)
             }
-            Log.d("123","--------*********")
+//            Log.d("123","--------*********")
             frament.startActivity(intent)
-            Log.d("123","--------/////////")
+//            Log.d("123","--------/////////")
         }
 
         return holder
