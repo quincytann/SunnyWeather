@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/weatherLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:scrollbars="none"
     android:overScrollMode="never"
-    android:visibility="invisible"
-    tools:context=".ui.weather.WeatherActivity">
+    android:visibility="invisible">
 
     <LinearLayout
         android:orientation="vertical"
