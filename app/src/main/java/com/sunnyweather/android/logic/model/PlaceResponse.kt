@@ -2,7 +2,7 @@ package com.sunnyweather.android.logic.model
 
 import com.google.gson.annotations.SerializedName
 
-// json数据模型
+// 地点信息数据模型
 
 data class PlaceResponse(val status: String, val places: List<Place>)
 
