@@ -1,5 +1,6 @@
 package com.sunnyweather.android.ui.weather
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -16,7 +17,6 @@ import com.sunnyweather.android.logic.model.Weather
 import com.sunnyweather.android.logic.model.getSky
 import kotlinx.android.synthetic.main.activity_weather.*
 import kotlinx.android.synthetic.main.forecast.*
-import kotlinx.android.synthetic.main.forecast_item.*
 import kotlinx.android.synthetic.main.life_index.*
 import kotlinx.android.synthetic.main.now.*
 import java.text.SimpleDateFormat
@@ -26,6 +26,7 @@ class WeatherActivity : AppCompatActivity() {
 
     val viewModel by lazy { ViewModelProviders.of(this).get(WeatherViewModel::class.java) }
 
+    @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (Build.VERSION.SDK_INT >= 21) {
@@ -52,8 +53,18 @@ class WeatherActivity : AppCompatActivity() {
                 Toast.makeText(this, "无法成功获得天气信息", Toast.LENGTH_SHORT).show()
                 result.exceptionOrNull()?.printStackTrace()
             }
+            swipeRefresh.isRefreshing = false
         })
+        swipeRefresh.setColorSchemeColors(R.color.colorPrimary)
+        refreshWeather()
+        swipeRefresh.setOnRefreshListener {
+            refreshWeather()
+        }
+    }
+
+    private fun refreshWeather() {
         viewModel.refreshWeather(viewModel.locationLng,viewModel.locationLat)
+        swipeRefresh.isRefreshing = true
     }
 
     private fun showWeatherInfo(weather: Weather) {
