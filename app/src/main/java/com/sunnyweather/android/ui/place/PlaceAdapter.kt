@@ -13,7 +13,7 @@ import com.sunnyweather.android.logic.model.Place
 import com.sunnyweather.android.ui.weather.WeatherActivity
 
 
-class PlaceAdapter(private val frament: Fragment, private val placeList: List<Place>) :
+class PlaceAdapter(private val fragment: PlaceFragment, private val placeList: List<Place>) :
     RecyclerView.Adapter<PlaceAdapter.ViewHolder>(){
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -32,11 +32,12 @@ class PlaceAdapter(private val frament: Fragment, private val placeList: List<Pl
                 putExtra("location_lat",place.location.lat)
                 putExtra("place_name",place.name)
             }
+            fragment.viewModel.savePlace(place)
 //            Log.d("123","--------*********")
-            frament.startActivity(intent)
+            fragment.startActivity(intent)
 //            Log.d("123","--------/////////")
+            fragment.activity?.finish()
         }
-
         return holder
     }
 
